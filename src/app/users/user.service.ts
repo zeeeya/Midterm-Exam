@@ -2,59 +2,66 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
-import { Note } from './note-model';
+import { User } from './user-model';
 
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
-interface NewNote {
-  content: string;
-  hearts: 0;
-  time: number;
+interface NewUser {
+  address: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  company: string;
+  phone: number;
+  address: string;
 }
 
 @Injectable()
-export class NoteService {
+export class UserService {
 
-  notesCollection: AngularFirestoreCollection<Note>;
-  noteDocument:   AngularFirestoreDocument<Node>;
+  usersCollection: AngularFirestoreCollection<User>;
+  userDocument:   AngularFirestoreDocument<Node>;
 
   constructor(private afs: AngularFirestore) {
-    this.notesCollection = this.afs.collection('notes', (ref) => ref.orderBy('time', 'desc').limit(5));
+    this.usersCollection = this.afs.collection('users', (ref) => ref.orderBy('time', 'desc').limit(5));
   }
 
-  getData(): Observable<Note[]> {
-    return this.notesCollection.valueChanges();
+  getData(): Observable<User[]> {
+    return this.usersCollection.valueChanges();
   }
 
-  getSnapshot(): Observable<Note[]> {
+  getSnapshot(): Observable<User[]> {
     // ['added', 'modified', 'removed']
-    return this.notesCollection.snapshotChanges().map((actions) => {
+    return this.usersCollection.snapshotChanges().map((actions) => {
       return actions.map((a) => {
-        const data = a.payload.doc.data() as Note;
-        return { id: a.payload.doc.id, content: data.content, hearts: data.hearts, time: data.time };
+        const data = a.payload.doc.data() as User;
+        return { id: a.payload.doc.id, firstname:data.firstname, lastname:data.lastname, email:data.email, company:data.company, phone:data.phone, address:data.address};
       });
     });
   }
 
-  getNote(id: string) {
-    return this.afs.doc<Note>(`notes/${id}`);
+  getUser(id: string) {
+    return this.afs.doc<User>(`users/${id}`);
   }
 
-  create(content: string) {
-    const note = {
-      content,
-      hearts: 0,
-      time: new Date().getTime(),
+  create(firstname: string, lastname: string, email: string, company: string, phone: number, address: string) {
+    const user = {
+      firstname,
+      lastname,
+      email,
+      company,
+      phone,
+      address,
     };
-    return this.notesCollection.add(note);
+    return this.usersCollection.add(user);
   }
 
-  updateNote(id: string, data: Partial<Note>) {
-    return this.getNote(id).update(data);
+  updateUser(id: string, data: Partial<User>) {
+    return this.getUser(id).update(data);
   }
 
-  deleteNote(id: string) {
-    return this.getNote(id).delete();
+  deleteUser(id: string) {
+    return this.getUser(id).delete();
   }
 }

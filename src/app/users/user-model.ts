@@ -1,6 +1,9 @@
 export interface Note {
-  content: string;
-  hearts: number;
-  id?: string;
-  time: number;
+  id?: string
+  firstname: string;
+  lastname: string;
+  email: string;
+  company: string;
+  phone: number;
+  address: string;
 }
