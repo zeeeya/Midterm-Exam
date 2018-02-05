@@ -14,7 +14,7 @@ export class UserDetailComponent {
   @Input()
   user: User;
 
-  constructor(private UserService: UserService) { }
+  constructor(private userService: UserService) { }
 
 
   deleteUser(id: string) {

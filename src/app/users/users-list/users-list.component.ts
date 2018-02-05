@@ -34,7 +34,7 @@ export class UsersListComponent implements OnInit {
     this.lastname = '';
     this.email = '';
     this.company = '';
-    this.phone = '';
+    this.phone = 0;
     this.address = '';
   }
 
