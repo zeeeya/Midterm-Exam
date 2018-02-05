@@ -1,15 +1,37 @@
-<h1>Firestore Notes</h1>
-<p>This is a very basic demo of the Firestore database.</p>
+<h1>Users </h1>
 
-<input [(ngModel)]="content" placeholder="Add your own note" class="input">
-
-
-<button class="button is-success" (click)="createNote()" [disabled]="content?.length < 2 || content?.length > 200">
-  Add Note
+    <div class="form-group">
+      <label for="firstname">First Name</label> 
+      <input placeholder="firstname" class="input" id="firstname" [(ngModel)]="firstname">
+    </div>
+     <div class="form-group">
+      <label for="lastname">Last Name</label> 
+      <input placeholder="lastname" class="input" id="lastname" [(ngModel)]="lastname">
+    </div>
+     <div class="form-group">
+      <label for="email">Email</label> 
+      <input placeholder="email" class="input" id="email" [(ngModel)]="email">
+    </div>
+    <div class="form-group">
+      <label for="company">Company</label> 
+      <input placeholder="company" class="input" id="company" [(ngModel)]="company">
+    </div>
+	<div class="form-group">
+      <label for="phone">Phone</label> 
+      <input placeholder="phone" class="input" id="phone" [(ngModel)]="phone">
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label> 
+      <input placeholder="address" class="input" id="address" [(ngModel)]="address">
+    </div>
+   <button class="button is-success" (click)="createUser()">
+  Add User
 </button>
-<hr>
-<div *ngFor="let note of notes | async">
-  <note-detail [note]="note"></note-detail>
+
+  <hr>
+<div *ngFor="let user of users | async">
+  <user-detail [user]="user"></user-detail>
 </div>
+
 
 

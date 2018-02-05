@@ -1,31 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NoteService } from '../note.service';
+import { UserService } from '../user.service';
 
-import { Note } from '../note-model';
+import { User } from '../user-model';
 
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'notes-list',
-  templateUrl: './notes-list.component.html',
-  styleUrls: ['./notes-list.component.scss'],
+  selector: 'users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.scss'],
 })
-export class NotesListComponent implements OnInit {
+export class UsersListComponent implements OnInit {
 
-  notes: Observable<Note[]>;
-  content: string;
+  users: Observable<User[]>;
+  firstname: string;
+  lastname: string;
+  email: string;
+  company: string;
+  phone: number;
+  address: string;
 
-  constructor(private noteService: NoteService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    // this.notes = this.noteService.getData()
-    this.notes = this.noteService.getSnapshot();
+    // this.users = this.userService.getData()
+    this.users = this.userService.getSnapshot();
   }
 
-  createNote() {
-    this.noteService.create(this.content);
-    this.content = '';
+  createUser() {
+    this.userService.create(this.firstname, this.lastname, this.email, this.company, this.phone, this.address);
+    this.firstname = '';
+    this.lastname = '';
+    this.email = '';
+    this.company = '';
+    this.phone = '';
+    this.address = '';
   }
 
 }

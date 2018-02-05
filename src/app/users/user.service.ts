@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
 interface NewUser {
-  address: string;
   firstname: string;
   lastname: string;
   email: string;
