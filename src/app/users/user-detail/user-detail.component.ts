@@ -1,31 +1,24 @@
 import { Component, Input } from '@angular/core';
 
-import { NoteService } from '../note.service';
+import { UserService } from '../user.service';
 
-import { Note } from '../note-model';
+import { User } from '../user-model';
 
 @Component({
-  selector: 'note-detail',
-  templateUrl: './note-detail.component.html',
-  styleUrls: ['./note-detail.component.scss'],
+  selector: 'user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss'],
 })
-export class NoteDetailComponent {
+export class UserDetailComponent {
 
   @Input()
-  note: Note;
+  user: User;
 
-  constructor(private noteService: NoteService) { }
+  constructor(private UserService: UserService) { }
 
-  addHeartToNote(val: number) {
-    if (this.note.id) {
-      this.noteService.updateNote(this.note.id, { hearts: val + 1 });
-    } else {
-      console.error('Note missing ID!');
-    }
-  }
 
-  deleteNote(id: string) {
-    this.noteService.deleteNote(id);
+  deleteUser(id: string) {
+    this.userService.deleteUser(id);
   }
 
 }

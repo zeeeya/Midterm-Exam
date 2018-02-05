@@ -1,8 +1,8 @@
 <div>
-  <h3>{{ note.content }}</h3>
-  <span class="button is-small is-info" (click)='addHeartToNote(note.hearts)'>
-    Heart <i class="fa fa-heart"></i>
-  </span>
-  <span class="button is-small is-danger" (click)='deleteNote(note?.id)'>Delete</span>
-  <p>This note has been hearted {{ note.hearts || 0 }} times.</p>
+  <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+  <span>{{ user.email }}</span>
+  <span>{{ user.company }}</span>
+  <span>{{ user.phone }}</span>
+  <span>{{ user.address }}</span>
+  <span class="button is-small is-danger" (click)='deleteUser(user?.id)'>Delete</span>
 </div>
