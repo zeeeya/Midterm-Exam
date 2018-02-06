@@ -1,13 +1,14 @@
 <h1>Users </h1>
-
-    <div class="form-group">
+  <div class="row">
+    <div class="col">
       <label for="firstname">First Name</label> 
       <input placeholder="firstname" class="input" id="firstname" [(ngModel)]="firstname">
     </div>
-     <div class="form-group">
+     <div class="col">
       <label for="lastname">Last Name</label> 
       <input placeholder="lastname" class="input" id="lastname" [(ngModel)]="lastname">
     </div>
+  </div>
      <div class="form-group">
       <label for="email">Email</label> 
       <input placeholder="email" class="input" id="email" [(ngModel)]="email">
@@ -24,7 +25,7 @@
       <label for="address">Address</label> 
       <input placeholder="address" class="input" id="address" [(ngModel)]="address">
     </div>
-   <button class="button is-success" (click)="createUser()">
+   <button class="button is-success" (click)="createUser()" [disabled]="firstname?.length < 2 || firstname?.length > 50">
   Add User
 </button>
 
